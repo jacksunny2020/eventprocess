@@ -96,27 +96,10 @@ abstract class AbsEventDispatcher implements EventDispatcherContract {
     }
 
     /**
-     * 创建事件对象
-     */
-//    public function createEvent(EventContract $event, EventTransporterContract $receiver) {
-//        if (null != $event && isset($event)) {
-//            $new_event = clone $event;
-////            if (null != $event->event_receivers && isset($event->event_receivers)) {
-////                $new_event->event_receivers = clone $event->event_receivers;
-////            }
-////            if (null != $event->event_sender && isset($event->event_sender)) {
-////                $new_event->event_sender = clone $event->event_sender;
-////            }
-//            return $new_event;
-//        } else {
-//            return null;
-//        }
-//    }
-
-    /**
      * 查找指定节点相关的处理器对象列表
      */
 //    abstract protected function findNodeProcessors(BaseEvent $event, EventTransporterContract $nodeToRoot);
+
     protected function callNodeProcessors(EventContract $event, EventTransporterContract $node) {
         return $this->listener->executeNodeProcessors($event, $node);
     }
