@@ -11,7 +11,11 @@ use Jacksunny\EventProcess\EventListenerContract;
 
 abstract class BaseEventListener implements EventListenerContract {
 
-    protected $listener;
+    //具体的事件监听器而不仅仅是 BaseEventListener
+    protected $concert_listener;
+    //当要执行某个成员方法，成员方法不存在时是否要抛出异常
+//    protected $no_method_throw = false;
+    protected $no_method_throw = true;
 
     /**
      * Create the event listener.
@@ -20,9 +24,9 @@ abstract class BaseEventListener implements EventListenerContract {
      */
     public function __construct(EventListenerContract $listener = null) {
         if (isset($listener)) {
-            $this->listener = $listener;
+            $this->concert_listener = $listener;
         } else {
-            $this->listener = $this;
+            $this->concert_listener = $this;
         }
     }
 
@@ -34,13 +38,24 @@ abstract class BaseEventListener implements EventListenerContract {
      * @return void
      */
     public function handle(EventContract $event) {
-        $dispatcher = new DefaultEventDispatcher($event, $this->listener);
+        $dispatcher = new DefaultEventDispatcher($event, $this->concert_listener);
         return $dispatcher->dispatch();
     }
 
+    /**
+     * 对于事件EventContract发生被监听时，对于事件目标用户EventTransporterContract执行与事件属性ActionName同名的本类方法
+     * 如果子类重写该方法，则可以更改针对某个事件某些目标用户的处理逻辑
+     */
     public function executeNodeProcessors(EventContract $event, EventTransporterContract $node) {
         $method_name = $event->getActionName();
-        call_user_func_array(array($this, $method_name), array($event, $node));
+//        call_user_func_array(array($this, $method_name), array($event, $node));
+        if (method_exists($this, $method_name)) {
+            call_user_func_array(array($this, $method_name), array($event, $node));
+        } else {
+            if ($this->no_method_throw) {
+                call_user_func_array(array($this, $method_name), array($event, $node));
+            }
+        }
     }
 
 }

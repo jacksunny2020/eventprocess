@@ -17,7 +17,7 @@ use Jacksunny\EventProcess\EventTransporterContract;
 /**
  * 事件基类，用于保存公共的属性
  */
-abstract class BaseEvent implements EventContract {
+class BaseEvent implements EventContract {
 
     use Dispatchable,
         InteractsWithSockets,
