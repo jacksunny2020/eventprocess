@@ -10,12 +10,15 @@ simple event process plugin including dispatching on tree for laravel framework
 
 2. append new service provider file line in the section providers of file app.config
   after appended,it should looks like
+  <pre>
    'providers' => [
         Illuminate\Auth\AuthServiceProvider::class,
         ......
         Jacksunny\EventProcess\EventProcessServiceProvider::class,
     ],
+   </pre>
 3.  create event class TestEvent
+    <pre>
     class TestEvent extends BaseEvent implements EventContract {
 
     public $context_obj;
@@ -24,9 +27,10 @@ simple event process plugin including dispatching on tree for laravel framework
         parent::__construct($tree_walker, $user, $request, $entity, $action_name, $options);
         $this->context_obj = $user;
     }
-
+    </pre>
     
 4.  create event listener class TestEventListener
+    <pre>
     class TestEventListener extends BaseEventListener implements EventListenerContract {
 
     public function __construct() {
@@ -38,6 +42,7 @@ simple event process plugin including dispatching on tree for laravel framework
 
         //other process code on this event type
     }
+    </pre>
 
   
 5. please notify me if you got any problem or error on it,thank you!
