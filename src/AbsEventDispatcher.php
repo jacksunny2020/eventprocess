@@ -13,6 +13,7 @@ use Jacksunny\EventProcess\EventTransporterContract;
 use \Exception;
 use Jacksunny\EventProcess\EventListenerContract;
 use Jacksunny\EventProcess\EventDispatcherContract;
+use App;
 
 /**
  * Description of GeneralEventDispatcher
@@ -33,6 +34,9 @@ abstract class AbsEventDispatcher implements EventDispatcherContract {
         $this->event = $event;
         //$this->tree_walker = $tree_walker;
         $this->tree_walker = $this->event->getTreeWalker();
+        if (!isset($this->tree_walker)) {
+            $this->tree_walker = App::make(TreeWalkerContract::class);
+        }
         $this->listener = $listener;
     }
 

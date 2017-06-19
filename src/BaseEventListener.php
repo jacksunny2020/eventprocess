@@ -8,6 +8,7 @@ use Jacksunny\EventProcess\TestEvent;
 use Jacksunny\EventProcess\EventContract;
 use Jacksunny\EventProcess\DefaultEventDispatcher;
 use Jacksunny\EventProcess\EventListenerContract;
+use App;
 
 abstract class BaseEventListener implements EventListenerContract {
 
@@ -15,6 +16,7 @@ abstract class BaseEventListener implements EventListenerContract {
     protected $concert_listener;
     //当要执行某个成员方法，成员方法不存在时是否要抛出异常
     protected $no_method_throw = false;
+
 //    protected $no_method_throw = true;
 
     /**
@@ -39,6 +41,10 @@ abstract class BaseEventListener implements EventListenerContract {
      */
     public function handle(EventContract $event) {
         $dispatcher = new DefaultEventDispatcher($event, $this->concert_listener);
+//        $dispatcher = App::make(EventDispatcherContract::class, [$event, $this->concert_listener]);
+//        if(!isset($dispatcher)){
+//            throw new \Exception("请提供一个事件分发类");
+//        }
         return $dispatcher->dispatch();
     }
 

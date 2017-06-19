@@ -27,11 +27,11 @@ class EventProcessServiceProvider extends ServiceProvider
      */
     public function register()
     {
-         $this->app->singleton('Jacksunny\EventProcess\EventDispatcherContract', function ($app) {
+        $this->app->singleton('Jacksunny\EventProcess\EventDispatcherContract', function ($app) {
             return new DefaultEventDispatcher();
         });
-        $this->app->singleton('Jacksunny\EventProcess\TreeWalkerContract', function ($app) {
-            return new DefaultTreeWalker();
-        });
+//        $this->app->singleton('Jacksunny\EventProcess\TreeWalkerContract', function ($app) {
+//            return new DefaultTreeWalker();
+//        });
     }
 }

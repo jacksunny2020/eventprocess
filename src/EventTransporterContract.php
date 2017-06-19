@@ -8,12 +8,14 @@
 
 namespace Jacksunny\EventProcess;
 
+use Jacksunny\EventProcess\TreeNodeContract;
+
 /**
  *
  * @author 施朝阳
  * @date 2017-5-4 19:03:47
  */
-interface EventTransporterContract {
+interface EventTransporterContract extends TreeNodeContract {
     //put your code here
     function getRoleCode();
 }
