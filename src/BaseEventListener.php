@@ -14,8 +14,8 @@ abstract class BaseEventListener implements EventListenerContract {
     //具体的事件监听器而不仅仅是 BaseEventListener
     protected $concert_listener;
     //当要执行某个成员方法，成员方法不存在时是否要抛出异常
-//    protected $no_method_throw = false;
-    protected $no_method_throw = true;
+    protected $no_method_throw = false;
+//    protected $no_method_throw = true;
 
     /**
      * Create the event listener.
