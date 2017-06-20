@@ -24,6 +24,4 @@ interface TreeNodeContract {
     function getParentId();
 
     function getEntityStatus();
-
-    function getModel(array $arr);
 }

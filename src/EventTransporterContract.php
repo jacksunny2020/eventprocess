@@ -17,5 +17,5 @@ use Jacksunny\EventProcess\TreeNodeContract;
  */
 interface EventTransporterContract extends TreeNodeContract {
     //put your code here
-    function getRoleCode();
+//    function getRoleCode();
 }
