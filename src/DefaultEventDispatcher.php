@@ -28,8 +28,8 @@ class DefaultEventDispatcher extends AbsEventDispatcher implements EventDispatch
     /**
      * 查找指定节点确定的目标接收者列表
      */
-    protected function findDestReceiversFromNode(EventContract $event, EventTransporterContract $node) {
-        return \App\Model\User::first();
-    }
+//    protected function findDestReceiversFromNode(EventContract $event, EventTransporterContract $node) {
+//        return \App\Model\User::first();
+//    }
 
 }
